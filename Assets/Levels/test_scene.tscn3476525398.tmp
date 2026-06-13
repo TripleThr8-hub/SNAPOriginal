@@ -1,0 +1,153 @@
+[gd_scene format=3 uid="uid://bjiawtne2k8i3"]
+
+[ext_resource type="Shader" uid="uid://bbbfj3h5mni3e" path="res://Assets/Shaders/CustomSky.tres" id="1_ix71e"]
+[ext_resource type="PackedScene" uid="uid://c0t8jaqaw2vc" path="res://Assets/Player/player.tscn" id="1_u1txe"]
+[ext_resource type="Shader" uid="uid://3nv3nmu8n7aa" path="res://Assets/Shaders/CelShader.gdshader" id="2_g7gxb"]
+
+[sub_resource type="Gradient" id="Gradient_f0kaw"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.477, 0.619, 0.741)
+colors = PackedColorArray(0.0928, 0.23083995, 0.29, 1, 0.88, 0.88, 0.88, 1, 0.8784314, 0.8784314, 0.8784314, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ix71e"]
+frequency = 0.0068
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5shub"]
+noise = SubResource("FastNoiseLite_ix71e")
+color_ramp = SubResource("Gradient_f0kaw")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_csdio"]
+shader = ExtResource("1_ix71e")
+shader_parameter/tex = SubResource("NoiseTexture2D_5shub")
+
+[sub_resource type="Sky" id="Sky_ix71e"]
+sky_material = SubResource("ShaderMaterial_csdio")
+
+[sub_resource type="Environment" id="Environment_f0kaw"]
+background_mode = 2
+sky = SubResource("Sky_ix71e")
+volumetric_fog_length = 49.42
+volumetric_fog_temporal_reprojection_enabled = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a2oev"]
+render_priority = 0
+shader = ExtResource("2_g7gxb")
+shader_parameter/albedo = Color(0.26, 0.07019999, 0.07019999, 1)
+shader_parameter/light_bands = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nm2tb"]
+render_priority = 0
+shader = ExtResource("2_g7gxb")
+shader_parameter/albedo = Color(0.10559999, 0.28069332, 0.32, 1)
+shader_parameter/light_bands = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v7bsa"]
+render_priority = 0
+shader = ExtResource("2_g7gxb")
+shader_parameter/albedo = Color(0.0744, 0.15685998, 0.31, 1)
+shader_parameter/light_bands = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5shub"]
+render_priority = 0
+shader = ExtResource("2_g7gxb")
+shader_parameter/albedo = Color(0.086100005, 0.086100005, 0.21, 1)
+shader_parameter/light_bands = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ansgv"]
+render_priority = 0
+shader = ExtResource("2_g7gxb")
+shader_parameter/albedo = Color(0.38, 0.076, 0.076, 1)
+shader_parameter/light_bands = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w61ql"]
+render_priority = 0
+shader = ExtResource("2_g7gxb")
+shader_parameter/albedo = Color(0.16470589, 0.22745098, 0.18039216, 1)
+shader_parameter/light_bands = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ix71e"]
+render_priority = 0
+shader = ExtResource("2_g7gxb")
+shader_parameter/albedo = Color(0.21, 0.0483, 0.059079997, 1)
+shader_parameter/light_bands = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bibav"]
+render_priority = 0
+shader = ExtResource("2_g7gxb")
+shader_parameter/albedo = Color(0.08653667, 0.13, 0.0533, 1)
+shader_parameter/light_bands = 3
+
+[node name="TestScene" type="Node3D" unique_id=1734157170]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1659949062]
+environment = SubResource("Environment_f0kaw")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1995944435]
+transform = Transform3D(-1, 7.942431e-08, -3.6531098e-08, 0, 0.41786703, 0.9085082, 8.742278e-08, 0.9085082, -0.41786703, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." unique_id=1575118423 instance=ExtResource("1_u1txe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.260234, 2.8008041, -2.1532068)
+crouching_height = -0.1
+
+[node name="Obsicals" type="Node3D" parent="." unique_id=389764910]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Obsicals" unique_id=1562728414]
+transform = Transform3D(0.9030806, 0, 0.4294711, 0, 1, 0, -0.4294711, 0, 0.9030806, -5.3662434, 3.1030164, 7.7314167)
+use_collision = true
+collision_mask = 31
+radius = 2.945
+height = 5.3662148
+sides = 26
+material = SubResource("ShaderMaterial_a2oev")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Obsicals" unique_id=1043051054]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.956165, 7.893909, -3.6446705)
+use_collision = true
+collision_mask = 31
+radius = 2.945
+height = 14.948
+sides = 7
+material = SubResource("ShaderMaterial_nm2tb")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Obsicals" unique_id=2123893434]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9464271, 0)
+use_collision = true
+collision_mask = 31
+material = SubResource("ShaderMaterial_v7bsa")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Obsicals" unique_id=546551444]
+transform = Transform3D(1, 0, 0, 0, 0.9718871, 0.23544745, 0, -0.23544745, 0.9718871, 10.067802, 5.2504845, 5.5160294)
+use_collision = true
+collision_mask = 31
+size = Vector3(2.5, 11.860706, 2.5)
+material = SubResource("ShaderMaterial_5shub")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Obsicals" unique_id=793480048]
+transform = Transform3D(-0.88581514, -0.10925663, 0.45099282, 0, 0.97188705, 0.23544744, -0.46403825, 0.20856291, -0.86091226, -0.91010094, 5.219454, -11.382411)
+use_collision = true
+collision_mask = 31
+size = Vector3(2.5, 11.860706, 2.5)
+material = SubResource("ShaderMaterial_ansgv")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Obsicals" unique_id=1934251801]
+transform = Transform3D(-0.26597688, -0.2269665, 0.9368791, 0, 0.9718871, 0.23544745, -0.96397936, 0.06262352, -0.2584993, 12.021178, 5.2504845, -12.662218)
+use_collision = true
+collision_mask = 31
+size = Vector3(2.5, 11.860706, 2.5)
+material = SubResource("ShaderMaterial_w61ql")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Obsicals" unique_id=2040014602]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8998466, 1.0458078, -0.18896794)
+use_collision = true
+collision_mask = 31
+radius = 1.3436185
+material = SubResource("ShaderMaterial_ix71e")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="." unique_id=714259505]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15713859, -0.080091, -0.1194973)
+use_collision = true
+collision_mask = 31
+size = Vector3(50, 1, 50)
+material = SubResource("ShaderMaterial_bibav")
