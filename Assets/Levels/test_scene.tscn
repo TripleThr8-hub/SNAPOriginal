@@ -94,7 +94,7 @@ crouching_height = -0.1
 [node name="Obsicals" type="Node3D" parent="." unique_id=389764910]
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="Obsicals" unique_id=1562728414]
-transform = Transform3D(0.9030806, 0, 0.4294711, 0, 1, 0, -0.4294711, 0, 0.9030806, -5.3662434, 3.1030164, 7.7314167)
+transform = Transform3D(0.9030806, 0, 0.4294711, 0, 1, 0, -0.4294711, 0, 0.9030806, -5.3662434, 3.1030164, 4.091543)
 use_collision = true
 collision_mask = 31
 radius = 2.945
