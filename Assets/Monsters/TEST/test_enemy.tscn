@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://8kg03a8e3gn0"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_13j02"]
-
-[node name="TestEnemy" type="CharacterBody3D" unique_id=798880932]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1777484081]
-mesh = SubResource("CapsuleMesh_13j02")
